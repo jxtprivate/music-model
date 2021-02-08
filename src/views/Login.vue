@@ -1,0 +1,52 @@
+<template lang="">
+  <div>
+    <login-detail @getUserInfo="getUserInfo"></login-detail>
+  </div>
+</template>
+<script>
+import loginDetail from "../components/common/loginDetail";
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    async getUserInfo(data) {
+      const res = await this.$http.get("/login/cellphone", {
+        params: {
+          phone: data.phone,
+          password: data.password,
+        },
+      });
+      if (res.data.code === 200) {
+       
+     this.$message({
+          message: '登录成功！！',
+          type: 'success',
+          duration:1000,
+          offset:200,
+          
+        });
+    
+        // console.log(res.data.account.id);
+        localStorage.setItem('id',res.data.account.id);
+
+        setTimeout(() => {
+          this.$router.push("/home");
+        },1000);
+      } else {
+        this.$notify({
+          title: "登录失败",
+          message: "请重新登录",
+          type: "warning",
+        });
+      }
+    //   console.log(res.data.code);
+      // console.log(data);
+    },
+  },
+  components: {
+    loginDetail,
+  },
+};
+</script>
+<style lang="scss"></style>
