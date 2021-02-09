@@ -34,6 +34,9 @@ const api = {
             params:param
         })
     },
+    getAllSongs(ids){
+        return axios.get("song/detail?ids=" + ids)
+    }
 
 
 

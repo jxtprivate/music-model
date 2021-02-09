@@ -54,11 +54,11 @@ export default {
       // const json = JSON.parse(localStorage.getItem("id"))
       let param = { uid: localStorage.getItem("id") };
       const res = await this.$api.getUserInfo(param);
-      console.log(res);
+      // console.log(res);
       // console.log(res.data.profile);
       const newValue = this.computedUserInfo(res.data);
       this.userInfo = newValue;
-      console.log(this.userInfo);
+      // console.log(this.userInfo);
       this.setUserInfo(newValue);
     },
   },

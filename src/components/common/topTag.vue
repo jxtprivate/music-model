@@ -1,7 +1,7 @@
 <template lang="">
   <div>
     <div class="tag">
-      <ul>
+      <ul >
         <el-link
           :underline="false"
           style="color:#333333"
@@ -9,8 +9,8 @@
           :key="i"
           @click.native="addClass(i)"
           :class="[{ active: i == selected ? true : false }]"
-          :href="'#/home/findmusic/'+item.url"
-          ><li>{{ item.name }}</li></el-link          
+          :href="hrefhead + item.url"
+          ><li :style="'font-size:'+ size +'px!important'">{{ item.name }}</li></el-link          
         >
       </ul>
     </div>
@@ -21,28 +21,7 @@ export default {
   data() {
     return {
       selected: 0,
-      list: [
-        {
-          name: "推荐",
-          url: "recommend",
-        },
-        {
-          name: "排行榜",
-          url: "findmusic",
-        },
-        {
-          name: "歌单",
-          url: "findmusic",
-        },
-        {
-          name: "歌手",
-          url: "findmusic",
-        },
-        {
-          name: "主播电台",
-          url: "findmusic",
-        },
-      ],
+
     };
   },
   methods: {
@@ -51,6 +30,7 @@ export default {
       this.selected = index;
     },
   },
+  props:['list','size','hrefhead']
 };
 </script>
 <style lang="scss" scoped>

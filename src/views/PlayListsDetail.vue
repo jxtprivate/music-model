@@ -2,13 +2,13 @@
   <div class="container">
     <div class="top">
       <div class="img">
-        <img :src="detail.coverImgUrl" alt="" />
+        <img :src="playLists.coverImgUrl" alt="" />
       </div>
       <div class="info">
-        <p>{{ detail.name }}</p>
-        <div class="userInfo" v-if="detail.creator">
-          <img :src="detail.creator.avatarUrl" alt="" />
-          <h5>{{ detail.creator.nickname }}</h5>
+        <p>{{ playLists.name }}</p>
+        <div class="userInfo" v-if="playLists.creator">
+          <img :src="playLists.creator.avatarUrl" alt="" />
+          <h5>{{ playLists.creator.nickname }}</h5>
           <h5>{{ getLocalTime }}</h5>
         </div>
         <div style="margin: 10px 0px">
@@ -17,10 +17,10 @@
           <el-button round>分享</el-button>
           <el-button round>下载全部</el-button>
         </div>
-        <div v-if="detail.tags">
+        <div v-if="playLists.tags">
           <p style="font-size:13px;font-weight:400;margin-bottom:5px">
-            标签：<span v-for="(item, i) in detail.tags" :key="i"
-              >{{ item }} <span v-if="i < detail.tags.length - 1"> / </span>
+            标签：<span v-for="(item, i) in playLists.tags" :key="i"
+              >{{ item }} <span v-if="i < playLists.tags.length - 1"> / </span>
             </span>
             <!-- 标签：{{
               detail.tags[0] + " / " + detail.tags[1] + " / " + detail.tags[2]
@@ -28,7 +28,7 @@
           </p>
         </div>
         <span style="font-size:13px;font-weight:400;margin-right:20px"
-          >歌曲：{{ detail.trackCount }}</span
+          >歌曲：{{ playLists.trackCount }}</span
         >
         <span style="font-size:13px;font-weight:400"
           >播放：{{ this.updatePlayCount }}</span
@@ -40,8 +40,8 @@
               style="font-size:13px;font-weight:400;margin-top:5px;width:800px"
             >
               {{
-                detail.description
-                  ? detail.description
+                playLists.description
+                  ? playLists.description
                   : "本人很懒，什么都没留下~"
               }}
             </p>
@@ -49,11 +49,21 @@
         >
       </div>
     </div>
-    <detail-list></detail-list>
+
+    <div v-if="id">
+      <top-tag
+        :list="list"
+        :size="15"
+        :hrefhead="'#/home/playlistdetail/' + id + '/'"
+      ></top-tag>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
-import DetailList from "../components/common/DetailList";
+// import DetailList from "../components/common/DetailList";
+import { mapMutations, mapState } from "vuex";
+import topTag from "../components/common/topTag.vue";
 export default {
   data() {
     return {
@@ -61,14 +71,39 @@ export default {
       time: "",
       playCount: "",
       activeName: "",
+      list: [
+        {
+          name: "歌曲列表",
+          url: "songlist",
+        },
+        {
+          name: "评论",
+          url: "commend",
+        },
+        {
+          name: "收藏者",
+          url: "subscribs",
+        },
+      ],
+      id: "",
     };
   },
   created() {
+    this.init();
     this.getPlayListDetail();
   },
   mounted() {},
-  watch: {},
+  watch: {
+    id() {
+      this.init();
+    },
+  },
   methods: {
+    getIDs() {},
+    ...mapMutations(["setPlayLists",'setSongsList']),
+    init() {
+      this.id = this.$route.params.id;
+    },
     async getPlayListDetail() {
       let param = {
         id: this.id,
@@ -77,14 +112,24 @@ export default {
       if (res.data.code === 200) {
         this.detail = res.data.playlist;
         // this.getLocalTime(this.detail.updateTime)
-        this.time = this.detail.updateTime;
-        this.playCount = this.detail.playCount;
-        console.log(this.detail);
+        this.setPlayLists(res.data.playlist);
+        this.time = this.playLists.updateTime;
+        this.playCount = this.playLists.playCount;
+        // console.log(this.detail);
+        // console.log(res.daplaylist);
+        let ids = "";
+        res.data.playlist.trackIds.forEach((item) => {
+          ids = ids + item.id + ",";
+        });
+        ids = ids.substr(0, ids.length - 1);
+        const res1 = await this.$api.getAllSongs(ids);
+        console.log(res1.data.songs);
+        this.setSongsList(res1.data.songs);
       }
     },
   },
-  props: ["id"],
   computed: {
+    ...mapState(["playLists"]),
     getLocalTime() {
       // console.log(this.time);
       var date = new Date(this.time);
@@ -104,11 +149,22 @@ export default {
     },
   },
   components: {
-    DetailList,
+    // DetailList,
+    topTag,
   },
 };
 </script>
 <style lang="scss">
+.el-table td,
+.el-table th {
+  padding: 8px 0 !important;
+  min-width: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative;
+  text-align: left;
+}
 .el-collapse {
   border-top: none !important;
 }

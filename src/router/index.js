@@ -11,11 +11,14 @@ import findFriends from '../views/AsideBarViews/findFriends';
 import findFm from '../views/AsideBarViews/findFm';
 import recommend from '../views/TopTagViews/recommend';
 import playListDetail from '../views/PlayListsDetail';
+import DetailList from '../components/common/DetailList';
+import showCommend from '../components/common/showCommend';
+import showSubcribes from '../components/common/showSubcribes';
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path:'/',redirect:'/home'},
+  { path:'/',redirect:'/home/findmusic/recommend'},
   { path:'/login',component:Login},
   { path:'/home', component:Home, children:[
     {
@@ -54,7 +57,24 @@ const routes = [
     {
       path:'playlistdetail/:id',
       component:playListDetail,
-      props:true
+      // props:true,
+      children:[
+        {
+          path:'/',redirect:'songlist'
+        },
+        {
+          path:'songlist',
+          component:DetailList
+        },
+        {
+          path:'commend',
+          component:showCommend
+        },
+        {
+          path:'subscribs',
+          component:showSubcribes
+        }
+      ]
     }
 
 

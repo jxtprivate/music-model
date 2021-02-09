@@ -1,12 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+// import api from '../api/index'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     userDetail:{},
-    // playlists:[]
+    playLists:{},
+    songList:{},
   },
   mutations: {
     setUserInfo(state,res){
@@ -15,8 +16,17 @@ export default new Vuex.Store({
     // setPlayLists(state,res){
     //   state.playlists = res
     // }
+    setPlayLists(state,res){
+      state.playLists = res
+    },
+    setSongsList(state,res){
+      state.songList = res
+    }
+
     
   },
-  actions: {},
+  actions: {
+
+  },
   modules: {}
 });
