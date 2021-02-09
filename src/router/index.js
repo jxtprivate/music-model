@@ -10,6 +10,7 @@ import findLive from '../views/AsideBarViews/findLive';
 import findFriends from '../views/AsideBarViews/findFriends';
 import findFm from '../views/AsideBarViews/findFm';
 import recommend from '../views/TopTagViews/recommend';
+import playListDetail from '../views/PlayListsDetail';
 
 Vue.use(VueRouter);
 
@@ -50,6 +51,11 @@ const routes = [
       path:'findfm',
       component:findFm
     },
+    {
+      path:'playlistdetail/:id',
+      component:playListDetail,
+      props:true
+    }
 
 
 

@@ -11,28 +11,22 @@ export default {
   },
   methods: {
     async getUserInfo(data) {
-      const res = await this.$http.get("/login/cellphone", {
-        params: {
-          phone: data.phone,
-          password: data.password,
-        },
-      });
+      let param = { phone: data.phone, password: data.password };
+      const res = await this.$api.login(param);
       if (res.data.code === 200) {
-       
-     this.$message({
-          message: '登录成功！！',
-          type: 'success',
-          duration:1000,
-          offset:200,
-          
+        this.$message({
+          message: "登录成功！！",
+          type: "success",
+          duration: 1000,
+          offset: 200,
         });
-    
+
         // console.log(res.data.account.id);
-        localStorage.setItem('id',res.data.account.id);
+        localStorage.setItem("id", res.data.account.id);
 
         setTimeout(() => {
           this.$router.push("/home");
-        },1000);
+        }, 1000);
       } else {
         this.$notify({
           title: "登录失败",
@@ -40,7 +34,7 @@ export default {
           type: "warning",
         });
       }
-    //   console.log(res.data.code);
+      //   console.log(res.data.code);
       // console.log(data);
     },
   },

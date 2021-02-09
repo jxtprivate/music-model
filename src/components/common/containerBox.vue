@@ -1,6 +1,6 @@
 <template lang="">
   <div class="info">
-    <el-link :underline="false" style="color:#333333">
+    <el-link :underline="false" style="color:#333333"  :href="url+id">
       <div class="box">
         <img :src="src" alt="" />
       </div>
@@ -14,7 +14,10 @@ export default {
   data() {
     return {};
   },
-  props: ["title", "src"],
+  props: ["title", "src",'id','url'],
+  methods:{
+      
+  }
 };
 </script>
 <style lang="scss" scoped>

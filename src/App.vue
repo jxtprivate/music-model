@@ -26,7 +26,6 @@ a {
   color: white;
   color: inherit;
   border: none;
-
 }
 i {
   font-style: normal;
@@ -36,8 +35,8 @@ li {
 }
 .el-link.el-link--default {
   color: #606266;
-  
-  border: none;
 
+  border: none;
 }
+
 </style>

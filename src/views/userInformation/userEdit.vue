@@ -97,9 +97,7 @@ export default {
     },
     async submit() {
       console.log(this.information);
-      const res = await this.$http.post("/user/update", {
-        params: this.information,
-      });
+      const res = await this.$api.updateUserInfo(this.information);
       console.log(res);
       if(res.data.code === 200){
           this.open1();

@@ -15,6 +15,8 @@
           :src="item.picUrl"
           v-for="item in playlists"
           :key="item.id"
+          :id="item.id"
+          :url="url"
         >
           <div slot="top-right">123</div>
         </container-box>
@@ -29,6 +31,7 @@ import containerBox from "../../components/common/containerBox";
 export default {
   data() {
     return {
+      url: "#/home/playlistdetail/",
       list: [],
       playlists: [],
     };
@@ -37,17 +40,48 @@ export default {
     this.getLunbo();
     this.getPlayLists();
   },
+  watch: {
+    $route() {
+      this.getLunbo();
+      this.getPlayLists();
+    },
+  },
   methods: {
     // ...mapMutations(["setPlayLists"]),
     async getLunbo() {
-      const res = await this.$http.get("/homepage/block/page");
+      let activeList = localStorage.getItem("banner");
+      if (activeList) {
+        activeList = JSON.parse(activeList);
+        if (new Date().getTime() - activeList.time <= 30 * 60 * 1000) {
+          this.list = activeList.list;
+          return;
+        }
+      }
+      let param = { type: 0 };
+      const res = await this.$api.getLunbo(param);
+      //   console.log(res);
       // console.log(res.data.data.blocks[0].extInfo.banners);
       if (res.data.code === 200) {
-        this.list = res.data.data.blocks[0].extInfo.banners;
+        this.list = res.data.banners;
+        localStorage.setItem(
+          "banner",
+          JSON.stringify({
+            time: new Date().getTime(),
+            list: res.data.banners,
+          })
+        );
       }
     },
     async getPlayLists() {
-      const res = await this.$http.get("/recommend/resource");
+      let activeList = localStorage.getItem("playlist");
+      if (activeList) {
+        activeList = JSON.parse(activeList);
+        if (new Date().getTime() - activeList.time <= 30 * 60 * 1000) {
+          this.playlists = activeList.playlists;
+          return;
+        }
+      }
+      const res = await this.$api.getPlayLists();
 
       if (res.data.code === 200) {
         //   console.log(res);
@@ -59,6 +93,13 @@ export default {
             "https://p2.music.126.net/4T5Q3F9n-AngI39Uh7AH_g==/109951164399406487.jpg",
           id: 0,
         });
+        localStorage.setItem(
+          "plays",
+          JSON.stringify({
+            time: new Date().getTime(),
+            playlists: this.playlists,
+          })
+        );
         // console.log(this.playlists);
       }
     },

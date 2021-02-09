@@ -6,15 +6,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userDetail:{},
-    playlists:[]
+    // playlists:[]
   },
   mutations: {
     setUserInfo(state,res){
       state.userDetail = res
     },
-    setPlayLists(state,res){
-      state.playlists = res
-    }
+    // setPlayLists(state,res){
+    //   state.playlists = res
+    // }
     
   },
   actions: {},
