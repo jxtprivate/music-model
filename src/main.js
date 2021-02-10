@@ -4,7 +4,8 @@ import router from "./router";
 import store from "./store";
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import api from './api/index'
+import api from './api/index';
+import './assets/fonts/iconfont.css'
 Vue.prototype.$api = api;
 
 Vue.config.productionTip = false;

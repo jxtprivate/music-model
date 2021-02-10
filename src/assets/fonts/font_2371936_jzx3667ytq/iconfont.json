@@ -1,0 +1,58 @@
+{
+  "id": "2371936",
+  "name": "music",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1629911",
+      "name": "音量",
+      "font_class": "icon-voice",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "5183631",
+      "name": "错误",
+      "font_class": "icon-test",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "2154945",
+      "name": "播放器-播放_44",
+      "font_class": "to-pause",
+      "unicode": "e6a4",
+      "unicode_decimal": 59044
+    },
+    {
+      "icon_id": "2154946",
+      "name": "播放器-暂停_44",
+      "font_class": "to-play",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "2154947",
+      "name": "播放器-下一集_44",
+      "font_class": "bofangqi-xiayiji",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
+      "icon_id": "18169612",
+      "name": "播放器,机顶盒",
+      "font_class": "tv-box-full",
+      "unicode": "e92c",
+      "unicode_decimal": 59692
+    },
+    {
+      "icon_id": "19908336",
+      "name": "播放器-下一集_44",
+      "font_class": "bofangqi-shangyiji-copy",
+      "unicode": "e92d",
+      "unicode_decimal": 59693
+    }
+  ]
+}

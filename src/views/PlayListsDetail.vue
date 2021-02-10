@@ -123,7 +123,7 @@ export default {
         });
         ids = ids.substr(0, ids.length - 1);
         const res1 = await this.$api.getAllSongs(ids);
-        console.log(res1.data.songs);
+        // console.log(res1.data.songs);
         this.setSongsList(res1.data.songs);
       }
     },
