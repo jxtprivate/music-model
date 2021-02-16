@@ -14,17 +14,20 @@
       </el-container>
       <el-footer height="70px">
         <audio
-          src="http://m8.music.126.net/20210209232254/1cfe64a0b79bef60bb0f6b79fe77e7f3/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3048715338/86cf/21be/420d/e2f709743f03736edf7620c713f9d484.mp3"
+          :src="'https://music.163.com/song/media/outer/url?id=' + id + '.mp3'"
           autobuffer
           loop
           ref="audio"
+          autoplay
         ></audio>
         <div class="footer">
           <div>
-            <div class="img"><img src="" alt="" /></div>
+            <div class="img"><img :src="picUrl" alt="" /></div>
             <div class="info">
-              <div>玻璃之情</div>
-              <div>哥哥</div>
+              <div>{{ title }}</div>
+              <div>
+                {{ singer }}
+              </div>
             </div>
           </div>
           <div>
@@ -39,9 +42,11 @@
                   <i class="iconfont icon-bofangqi-shangyiji-copy"></i>
                 </div>
                 <div
-                  style="width:40px;height:40px;background-color:#ebebed;text-align:center;line-height:42px;border-radius:22.5px"
+                  style="width:40px;height:40px;background-color:#ebebed;text-align:center;line-height:42px;border-radius:22.5px;cursor:pointer"
+                  @click="play"
                 >
-                  <i class="iconfont icon-to-play"></i>
+                  <i v-if="s" class="iconfont icon-to-play"></i>
+                  <i class="iconfont icon-to-pause" v-else></i>
                 </div>
                 <div
                   style="width:40px;height:45px;text-align:center;line-height:40px"
@@ -54,23 +59,29 @@
                   v-model="value"
                   :show-tooltip="false"
                   input-size="mini"
+                  :max="max"
+                  @change="change1"
                 ></el-slider>
               </div>
             </div>
           </div>
+          <div
+            style="width:200px;display:flex;padding-top:25px;padding-right:0px"
+          >
+            <div style="width:30px;height:40px;margin-right:20px">
+              <i class="iconfont icon-icon-voice"></i>
+            </div>
 
-          <div style="width:200px;height:60px;line-height:40px;display:flex;margin:20px 10px">
-           
-              <div style="width:30px;height:40px;margin-right:20px"><i class="iconfont icon-icon-voice"></i></div>
-
-              <div class="block" style="width:100px;height:40px">
-                <el-slider
-                  v-model="voice"
-                  :show-tooltip="false"
-                  input-size="mini"
-                ></el-slider>
-              </div>
-
+            <div class="block" style="width:100px;height:30px">
+              <el-slider
+                v-model="voice"
+                :show-tooltip="false"
+                input-size="mini"
+                @input="change"
+                :step="0.01"
+                :max="1"
+              ></el-slider>
+            </div>
           </div>
         </div>
         <!-- <button @click="log">111</button> -->
@@ -88,26 +99,105 @@ export default {
   data() {
     return {
       value: 0,
-      voice:20,
+      voice: 1,
       userInfo: {},
       time: 0,
+      s: false,
+      id: "",
+      // index: 0,
+      picUrl: "",
+      title: "",
+      singer: "",
+      max: 100,
     };
   },
   computed: {
-    ...mapState(["userDetail"]),
+    ...mapState(["userDetail", "curId", "songList"]),
+    
+  },
+  watch: {
+    
+    // id() {
+    //   console.log(curId);
+    // },
+ 
+    // value() {
+    //   console.log(this.value);
+    //   this.value = this.$refs.audio.currentTime
+    //   // if(this.value === parseInt(this.$refs.audio.duration)){
+    //   //   this.value = 0
+    //   // }
+    // },
+    curId() {
+      // console.log(this.curId);
+      this.value = 0
+      console.log(123);
+      this.s = false;
+      this.play();
+      this.songList.some((item) => {
+        if (parseInt(item.id) === parseInt(this.curId)) {
+          this.singer = "";
+          this.id = this.curId;
+          this.title = item.name;
+          item.ar.forEach((ele) => {
+            this.singer = this.singer + ele.name + " ";
+          });
+          this.picUrl = item.al.picUrl;
+          return true;
+        }
+        return false;
+      });
+      setTimeout(()=>{
+        if(this.$refs.audio.duration)
+        this.max = parseInt(this.$refs.audio.duration);
+      },5000)
+    },
   },
   created() {
+    // this.init();
     this.getUserInfo();
   },
+
   methods: {
+    change1(){
+      console.log(this.value);
+      this.$refs.audio.currentTime = this.value
+    },
+    change(){
+      // console.log(this.voice);
+      this.$refs.audio.volume = this.voice;
+    },
+    format(time) {
+      let min = parseInt((time % (1000 * 60 * 60)) / (1000 * 60));
+      let sec = parseInt((time % (1000 * 60)) / 1000);
+      if (min < 10) {
+        min = "0" + min;
+      }
+      if (sec < 10) {
+        sec = "0" + sec;
+      }
+      const formatTime = min + ":" + sec;
+      return formatTime;
+    },
+    init() {
+      // this.max = parseInt(this.$refs.audio.duration);
+      // console.log(this.curId);
+      this.value = 0
+     
+      
+    },
+    play() {
+      this.s = !this.s;
+      if (this.s) this.$refs.audio.play();
+      else this.$refs.audio.pause();
+    },
     log() {
       console.log(this.$refs);
       // this.$refs.audio.play();
       let a = this.$refs.audio;
-      this.time += 10;
-      a.volume = 0.1;
-      a.currentTime = this.time;
-      // console.log(a.currentTime,this.time,a.duration,a.volume,a.seekable);
+      this.value++;
+      console.log(this.value);
+      console.log(a.currentTime, a.duration, a.volume, a.seekable);
     },
     ...mapMutations(["setUserInfo"]),
     computedUserInfo(data) {
@@ -141,7 +231,6 @@ export default {
     Header,
     Asider,
   },
-  mounted() {},
 };
 </script>
 

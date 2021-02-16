@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState,mapActions} from "vuex";
 export default {
   data() {
     return {
@@ -18,11 +18,14 @@ export default {
     };
   },
   methods: {
+    // ...mapMutations(['queryDateA']),
+    ...mapActions(['queryDateA']),
     init() {
       // console.log(this.playLists);
     },
     add(row) {
-      console.log(row);
+      // console.log(row);
+      this.queryDateA(row);
     },
     getSinger(arr) {
       // console.log(arr);
@@ -48,6 +51,7 @@ export default {
     },
     packData() {
       // console.log(this.playLists);
+      this.tableData = [];
       var arr = this.songList;
       for (var item in arr) {
         // console.log(item,arr[item]);
@@ -62,13 +66,16 @@ export default {
     },
   },
   computed: {
-    ...mapState(["songList"]),
+    ...mapState(["songList",'curId']),
   },
   watch: {
     songList() {
       // this.init();
       this.packData();
     },
+    curId(){
+      this.packData();
+    }
   },
   created() {
     this.packData();

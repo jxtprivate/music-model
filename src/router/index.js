@@ -14,6 +14,12 @@ import playListDetail from '../views/PlayListsDetail';
 import DetailList from '../components/common/DetailList';
 import showCommend from '../components/common/showCommend';
 import showSubcribes from '../components/common/showSubcribes';
+import RankList from '../views/TopTagViews/RankList';
+import playList from '../views/TopTagViews/playList';
+import daylyRecommend from '../views/TopTagViews/daylyRecommend';
+import singerList from '../views/TopTagViews/singerList';
+import broatCast from '../views/TopTagViews/broatCast';
+import BoutiquePlay from '../views/TopTagViews/BoutiquePlay';
 
 Vue.use(VueRouter);
 
@@ -35,7 +41,12 @@ const routes = [
       component:findMusic,
       children:[
         { path:'/',redirect:'recommend'},
-        { path:'recommend', component:recommend }
+        { path:'recommend', component:recommend },
+        { path:'ranklist', component:RankList },
+        { path:'playlist', component: playList},
+        { path:'singerlist', component: singerList},
+        { path:'broatcast', component: broatCast},
+        { path:'boutique', component: BoutiquePlay},
       ]
     },
     {
@@ -53,6 +64,10 @@ const routes = [
     {
       path:'findfm',
       component:findFm
+    },
+    {
+      path:'daylyrecommend',
+      component:daylyRecommend
     },
     {
       path:'playlistdetail/:id',

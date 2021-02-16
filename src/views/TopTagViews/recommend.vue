@@ -10,6 +10,7 @@
         >推荐歌单 ></el-link
       >
       <div class="box">
+        <container-box title="每日歌曲推荐" src="https://p2.music.126.net/4T5Q3F9n-AngI39Uh7AH_g==/109951164399406487.jpg" url="#/home/" id="daylyrecommend"></container-box>
         <container-box
           :title="item.name"
           :src="item.picUrl"
@@ -18,7 +19,7 @@
           :id="item.id"
           :url="url"
         >
-          <div slot="top-right">123</div>
+          <div slot="top-right" style="color:white;font-size:12px" ><span class="el-icon-video-play" v-if="item.playCount" style="margin-right:5px"></span>{{ item.playCount?(item.playCount/10000).toFixed(2) + '万':''}}</div>
         </container-box>
       </div>
     </div>
@@ -86,13 +87,14 @@ export default {
       if (res.data.code === 200) {
         //   console.log(res);
         //   this.getPlayLists(res.data.playlists)
-        this.playlists = res.data.recommend.slice(0, 9);
-        this.playlists.unshift({
-          name: "每日歌曲推荐",
-          picUrl:
-            "https://p2.music.126.net/4T5Q3F9n-AngI39Uh7AH_g==/109951164399406487.jpg",
-          id: 0,
-        });
+        this.playlists = res.data.result.slice(0, 9);
+        // this.playlists.unshift({
+        //   name: "每日歌曲推荐",
+        //   picUrl:
+        //     "https://p2.music.126.net/4T5Q3F9n-AngI39Uh7AH_g==/109951164399406487.jpg",
+        //   id: 0,
+        //   playCount:''
+        // });
         localStorage.setItem(
           "plays",
           JSON.stringify({

@@ -16,19 +16,19 @@ export default {
         },
         {
           name: "排行榜",
-          url: "findmusic",
+          url: "ranklist",
         },
         {
           name: "歌单",
-          url: "findmusic",
+          url: "playlist",
         },
         {
           name: "歌手",
-          url: "findmusic",
+          url: "singerlist",
         },
         {
           name: "主播电台",
-          url: "findmusic",
+          url: "broatcast",
         },
       ],
     }
