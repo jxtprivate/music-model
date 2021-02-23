@@ -1,15 +1,19 @@
 <template lang="">
   <div>
-      <top-tag :list="list" hrefhead="#/home/findmusic/"></top-tag>
+    <div style="margin-left:70px">
+      <top-tag :list="list" hrefhead="#/home/findmusic/" :size="17"></top-tag>
+    </div>
+    <transition mode="out-in">
       <router-view></router-view>
+    </transition>
   </div>
 </template>
 <script>
-import topTag from '../../components/common/topTag'
+import topTag from "../../components/common/topTag";
 export default {
   data() {
-    return{
-            list: [
+    return {
+      list: [
         {
           name: "推荐",
           url: "recommend",
@@ -31,14 +35,36 @@ export default {
           url: "broatcast",
         },
       ],
-    }
+    };
   },
-  methods: {
-     
+
+  methods: {},
+  components: {
+    topTag,
   },
-  components:{
-      topTag,
-  }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.v-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+  
+}
+// .v-enter-to{
+//   opacity: 1;
+//   transform: translateY(100%);
+// }
+// .v-leave{
+//   opacity: 1;
+//   transform: translateX(100px);
+// }
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
+  
+}
+.v-enter-active,.v-leave-active{
+  position: absolute;
+  transition: all 0.1s ease;
+}
+</style>

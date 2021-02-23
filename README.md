@@ -37,3 +37,28 @@
 ## 文本超出显示省略号，超出部分隐藏
 
 ## 歌单、每日推荐歌曲部分完成
+
+## 获取歌手分类部分完成
+
+## 实现vue的滚动触发事件操作
+mounted() {
+    let box = this.$refs.box;
+    box.addEventListener('scroll',this.handleScroll,true);
+ },
+methods: {
+    handleScroll(e){
+      //变量scrollTop是滚动条滚动时，距离顶部的距离
+      var scrollTop = e.target.scrollTop;
+      //变量windowHeight是可视区的高度
+      var windowHeight = e.target.clientHeight;
+      //变量scrollHeight是滚动条的总高度
+           var scrollHeight = e.target.scrollHeight;
+      //滚动条到底部的条件
+      if(scrollTop + windowHeight == scrollHeight){
+        //写后台加载数据的函数
+           console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+      }
+    },
+## 今天优化了路由切换的卡顿问题，加了过渡动画，使路由切换更加流畅
+
+## 完成了mv，评论部分，以及歌手详情部分，进度60%

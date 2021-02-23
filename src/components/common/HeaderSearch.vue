@@ -5,7 +5,7 @@
       :fetch-suggestions="querySearchAsync"
       placeholder="请输入内容"
       @select="handleSelect"
-      size="small"
+      size="mini"
       prefix-icon="el-icon-search"
       @input="input"
     ></el-autocomplete>
@@ -58,6 +58,7 @@
 </script>
 <style lang="scss" scoped>
 .search{
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-bottom: 15px;
 }
 </style>

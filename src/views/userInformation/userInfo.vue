@@ -36,8 +36,8 @@ export default {
     height: 280px;
     background-color: #ffffff;
     .photo {
-      width: 200px;
-      height: 200px;
+      width: 160px;
+      height: 160px;
       padding: 30px;
       img {
         width: 100%;
@@ -48,7 +48,8 @@ export default {
     .name{
         padding-top: 0;
         // line-height: 100px;
-        margin-top: 20px;
+        margin-top: 40px;
+        font-size: 18px;
     }
     .level{
         font-size: 12px;
@@ -64,7 +65,7 @@ export default {
         width: 150px;
         height: 25px;
         background-color: white;
-        font-size: 18px;
+        font-size: 16px;
         border-radius: 14px;
         text-align: center;
         margin-top: 20px;

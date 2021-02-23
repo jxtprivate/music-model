@@ -1,7 +1,7 @@
 <template lang="">
-  <div>
+  <div class="container">
     <el-table :data="tableData" stripe style="width: 100%" @cell-dblclick="add">
-      <el-table-column prop="title" label="音乐标题" width="600">
+      <el-table-column prop="title" label="音乐标题" width="400">
       </el-table-column>
       <el-table-column prop="name" label="歌手" width="250"> </el-table-column>
       <el-table-column prop="play" label="专辑" width="400"> </el-table-column>
@@ -84,4 +84,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container{
+  margin: 0 20px;
+  // width: 100%;
+}
+</style>

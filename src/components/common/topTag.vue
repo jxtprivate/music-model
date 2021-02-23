@@ -10,6 +10,7 @@
           @click.native="addClass(i)"
           :class="[{ active: i == selected ? true : false }]"
           :href="hrefhead + item.url"
+          
           ><li :style="'font-size:'+ size +'px!important'">{{ item.name }}</li></el-link          
         >
       </ul>

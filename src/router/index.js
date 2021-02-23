@@ -20,6 +20,16 @@ import daylyRecommend from '../views/TopTagViews/daylyRecommend';
 import singerList from '../views/TopTagViews/singerList';
 import broatCast from '../views/TopTagViews/broatCast';
 import BoutiquePlay from '../views/TopTagViews/BoutiquePlay';
+import singerDetail from '../views/singerDetail';
+import albums from '../views/singerDetailList/albums';
+import albums1 from '../views/singerDetailList/albums1';
+import description from '../views/singerDetailList/description';
+import mv from '../views/singerDetailList/mv';
+import similarity from '../views/singerDetailList/similarity';
+import albumsDetail from '../views/singerDetailList/albumsDetail';
+import sl from '../views/singerDetailList/songsList';
+import ds from '../views/singerDetailList/describes';
+import cm from '../views/singerDetailList/commends';
 
 Vue.use(VueRouter);
 
@@ -35,6 +45,28 @@ const routes = [
     {
       path:'useredit',
       component:userEdit
+    },
+    {
+      path:'albumsdetail/:id',
+      component:albumsDetail,
+      props:true,
+      children:[
+        {
+          path:'/', redirect:'songslist'
+        },
+        {
+          path:'songslist',
+          component:sl
+        },
+        {
+          path:'commends',
+          component:cm
+        },
+        {
+          path:'describes',
+          component:ds
+        },
+      ]
     },
     {
       path:'findmusic',
@@ -68,6 +100,36 @@ const routes = [
     {
       path:'daylyrecommend',
       component:daylyRecommend
+    },
+    {
+      path:'singerdetail/:id',
+      component:singerDetail,
+      props:true,
+      children:[
+        {
+          path:'/', redirect:'albums'
+        },
+        {
+          path:'albums',
+          component:albums
+        },
+        {
+          path:'albums1',
+          component:albums1
+        },
+        {
+          path:'description',
+          component:description
+        },
+        {
+          path:'mv',
+          component:mv
+        },
+        {
+          path:'similarity',
+          component:similarity
+        },
+      ]
     },
     {
       path:'playlistdetail/:id',

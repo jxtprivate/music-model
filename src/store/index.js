@@ -10,6 +10,7 @@ export default new Vuex.Store({
     songList:[],
     // songs:[],
     curId:0,
+    albums:{}
   
   },
   mutations: {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     setCurrentId(state,id){
       state.curId = id;
     },
+    setAlbumsInformation(state,res){
+      state.albums = res
+    }
 
 
     

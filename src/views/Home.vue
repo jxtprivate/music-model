@@ -1,18 +1,18 @@
 <template>
   <div class="home">
     <el-container>
-      <el-header height="70px"
+      <el-header height="50px"
         ><Header :userInfo="userInfo"></Header
       ></el-header>
-      <el-container style="height:660px">
-        <el-aside width="245px">
+      <el-container style="height:600px">
+        <el-aside width="200px">
           <Asider></Asider>
         </el-aside>
         <el-main>
           <router-view />
         </el-main>
       </el-container>
-      <el-footer height="70px">
+      <el-footer height="60px">
         <audio
           :src="'https://music.163.com/song/media/outer/url?id=' + id + '.mp3'"
           autobuffer
@@ -24,32 +24,36 @@
           <div>
             <div class="img"><img :src="picUrl" alt="" /></div>
             <div class="info">
-              <div>{{ title }}</div>
-              <div>
+              <p style="font-size:14px;margin-top:10px">{{ title }}</p>
+              <p style="font-size:12px;height:20px;line-height:20px">
                 {{ singer }}
-              </div>
+              </p>
             </div>
           </div>
           <div>
-            <div style="display:block;width:500px">
+            <div style="display:block;width:500px;height:48px">
               <div
                 class="playcomponents"
-                style="height:40px;width:250px;margin:0 auto;"
+                style="height:35px;width:250px;margin:0px auto;vertical-align: middle;"
               >
                 <div
-                  style="display:block;width:40px;height:40px;ctext-align:center;line-height:45px"
+                  style="display:block;width:30px;height:30px;text-align:center;line-height:20px;margin-top:12px"
                 >
                   <i class="iconfont icon-bofangqi-shangyiji-copy"></i>
                 </div>
                 <div
-                  style="width:40px;height:40px;background-color:#ebebed;text-align:center;line-height:42px;border-radius:22.5px;cursor:pointer"
+                  style="width:30px;height:30px;text-align:center;line-height:20px;cursor:pointer;border-radius:50%;background-color:#ebebed;line-height:30px;margin-top:6px"
                   @click="play"
                 >
                   <i v-if="s" class="iconfont icon-to-play"></i>
-                  <i class="iconfont icon-to-pause" v-else></i>
+                  <i
+                    class="iconfont icon-to-pause"
+                    v-else
+                    style="margin-left:4px"
+                  ></i>
                 </div>
                 <div
-                  style="width:40px;height:45px;text-align:center;line-height:40px"
+                  style="width:30px;height:30px;text-align:center;line-height:20px;margin-top:12px"
                 >
                   <i class="iconfont icon-bofangqi-xiayiji"></i>
                 </div>
@@ -113,14 +117,12 @@ export default {
   },
   computed: {
     ...mapState(["userDetail", "curId", "songList"]),
-    
   },
   watch: {
-    
     // id() {
     //   console.log(curId);
     // },
- 
+
     // value() {
     //   console.log(this.value);
     //   this.value = this.$refs.audio.currentTime
@@ -130,7 +132,7 @@ export default {
     // },
     curId() {
       // console.log(this.curId);
-      this.value = 0
+      this.value = 0;
       console.log(123);
       this.s = false;
       this.play();
@@ -147,10 +149,10 @@ export default {
         }
         return false;
       });
-      setTimeout(()=>{
-        if(this.$refs.audio.duration)
-        this.max = parseInt(this.$refs.audio.duration);
-      },5000)
+      setTimeout(() => {
+        if (this.$refs.audio.duration)
+          this.max = parseInt(this.$refs.audio.duration);
+      }, 5000);
     },
   },
   created() {
@@ -159,11 +161,11 @@ export default {
   },
 
   methods: {
-    change1(){
+    change1() {
       console.log(this.value);
-      this.$refs.audio.currentTime = this.value
+      this.$refs.audio.currentTime = this.value;
     },
-    change(){
+    change() {
       // console.log(this.voice);
       this.$refs.audio.volume = this.voice;
     },
@@ -182,9 +184,7 @@ export default {
     init() {
       // this.max = parseInt(this.$refs.audio.duration);
       // console.log(this.curId);
-      this.value = 0
-     
-      
+      this.value = 0;
     },
     play() {
       this.s = !this.s;
@@ -300,9 +300,10 @@ export default {
     div:nth-child(1) {
       display: flex;
       .img {
-        width: 50px;
-        height: 50px;
-        margin: 12px;
+        width: 40px;
+        height: 40px;
+        margin: 15px;
+        margin-left: 30px;
         border-radius: 5px;
         overflow: hidden;
         background-color: pink;
@@ -312,15 +313,15 @@ export default {
         }
       }
       .info {
-        margin-top: 10px;
+        // margin-top: 5px;
         div:nth-child(2) {
-          font-size: 12px;
+          font-size: 10px;
         }
       }
     }
     .playcomponents {
       div {
-        margin: 8px 20px;
+        margin: 0px 20px;
       }
     }
   }

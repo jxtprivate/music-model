@@ -31,7 +31,7 @@
           >歌曲：{{ playLists.trackCount }}</span
         >
         <span style="font-size:13px;font-weight:400"
-          >播放：{{ this.updatePlayCount }}</span
+          >播放：{{updatePlayCount }}</span
         >
         <!-- <p style="font-size:13px;font-weight:400;margin-top:5px">简介：{{ detail.description }}</p> -->
         <el-collapse v-model="activeName" accordion

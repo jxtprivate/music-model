@@ -7,6 +7,7 @@
       <el-link
         style="font-size:20px;font-weight:700;margin:15px 0"
         :underline="false"
+        
         >推荐歌单 ></el-link
       >
       <div class="box">
@@ -49,6 +50,9 @@ export default {
   },
   methods: {
     // ...mapMutations(["setPlayLists"]),
+    goto(){
+      console.log(this.$refs);
+    },
     async getLunbo() {
       let activeList = localStorage.getItem("banner");
       if (activeList) {
@@ -114,11 +118,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container {
+  position: relative;
   margin: 20px auto;
-  width: 1200px;
+  width: 1100px;
   .lunbo {
-    width: 1200px;
+    width: 1100px;
     // height: 00px;
+    margin: 0 auto;
   }
   .el-link.el-link--default {
     color: #000;

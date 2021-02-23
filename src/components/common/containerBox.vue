@@ -25,10 +25,10 @@ export default {
 //   margin: 10px;
 margin-bottom: 10px;
   position: relative;
-  width: 220px;
+  width: 205px;
   .box {
     width: 100%;
-    height: 225px;
+    height: 205px;
     border-radius: 10px;
     background-color: rgba($color: #38667d, $alpha: 1);
     overflow: hidden;

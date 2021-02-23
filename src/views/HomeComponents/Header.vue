@@ -3,10 +3,11 @@
     <el-link :underline="false" href="#/home"><div class="backImg"></div></el-link>
     
     <div class="icon">
-      <i class="el-icon-arrow-left"></i>
-      <i class="el-icon-arrow-right"></i>
+      <i class="el-icon-arrow-left" @click="back"></i>
+      <i class="el-icon-arrow-right" @click="forward"></i>
     </div>
-    <header-search></header-search>
+    <div style="height:50px;line-height:50px"><header-search></header-search></div>
+    
     <div class="userphoto">
       <el-link :href="'#/home/userinfo/'+ userInfo.id"  :underline="false">
         <img :src="userInfo.avatarUrl" alt="" />
@@ -16,7 +17,7 @@
     <div class="nickname">{{ userInfo.nickname }}</div>
     <i
       class="el-icon-setting"
-      style="color:#f8bbbb;font-size:20px;margin:25px 30px"
+      style="color:#f8bbbb;font-size:20px;margin:15px 30px"
     ></i>
   </div>
 </template>
@@ -28,7 +29,16 @@ export default {
     HeaderSearch,
   },
   mounted() {},
-  methods: {},
+  methods: {
+    back(){
+      // console.log('back');
+      this.$router.go(-1)
+    },
+    forward(){
+      // console.log('forward');
+      this.$router.go(1)
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -44,32 +54,37 @@ export default {
     background: url("../../assets/logo.png") no-repeat 32px -4px;
   }
   .icon {
-    margin-left: 80px;
-    margin-top: 3px;
+    width: 80px;
+    height: 50px;
+    margin-left: 50px;
+    // margin-bottom: 20px;
+    line-height: 50px;
     i {
       cursor: pointer;
       color: white;
-      font-size: 18px;
+      font-size: 16px;
     }
     i:nth-child(2) {
       margin-left: 20px;
     }
   }
   .userphoto {
-    margin-left: 850px;
-    margin-top: 15px;
-    width: 35px;
-    height: 35px;
+    margin-left: 680px;
+    // margin-top: 10px;
+    width: 30px;
+    height: 30px;
     border-radius: 17px;
     img {
       width: 100%;
       height: 100%;
       border-radius: 17px;
     }
+    line-height: 70px;
   }
   .nickname {
+    // width: 100px;
     margin-left: 10px;
-    line-height: 70px;
+    line-height: 50px;
     color: #f8bbbb;
   }
 }

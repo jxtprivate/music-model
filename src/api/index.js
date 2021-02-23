@@ -71,7 +71,55 @@ const api = {
     //获取每日推荐歌曲
     getDaylySongs(){
         return axios.get('/recommend/songs')
-    }
+    },
+    //按各种要求获取歌手分类列表
+    getSingerList(param){
+        return axios.get('/artist/list',{
+            params:param
+        })
+    },
+    //获取歌手详情
+    getSingerDetail(param){
+        return axios.get('/artist/detail',{
+            params:param
+        })
+    },
+    //获取歌手热门50首
+    getSingerTopSongs(param){
+        return axios.get('/artist/top/song',{
+            params:param
+        })
+    },
+    //获取歌手专辑列表
+    getSingerAlbums(param){
+        return axios.get('/artist/album',{
+            params:param
+        })
+    },
+    //获取歌手专辑详情
+    getSingerAlbumsDetail(param){
+        return axios.get('/album',{
+            params:param
+        })
+    },
+    //获取歌手MV
+    getSingerMv(param){
+        return axios.get('/artist/mv',{
+            params:param
+        })
+    },
+    //获取歌单评论
+    getAlbumCommends(param){
+        return axios.get('/comment/album',{
+            params:param
+        })
+    },
+    //获取歌手描述
+    getSingerDescribes(param){
+        return axios.get('/artist/desc',{
+            params:param
+        })
+    },
 
 
 

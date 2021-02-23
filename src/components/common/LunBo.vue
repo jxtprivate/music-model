@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <el-carousel :interval="4000" type="card" height="220px">
+    <el-carousel :interval="4000" type="card" height="200px">
       <el-carousel-item v-for="item in list" :key="item.bannerId">
         <h3 class="medium">
           <img :src="item.imageUrl" alt="" style="width:100%;">

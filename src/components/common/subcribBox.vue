@@ -16,7 +16,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .box {
-  width: 450px;
+  width: 400px;
   height: 130px;
   // border: 1px solid #aaa;
   display: flex;

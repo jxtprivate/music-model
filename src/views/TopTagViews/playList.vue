@@ -1,7 +1,7 @@
 <template lang="">
   <div class="container" @click="closeSel">
     <div class="hotlist" @click="$router.push('/home/findmusic/boutique')">
-      <img :src="detail.coverImgUrl" alt="精品歌单" />
+      <img :src="detail.coverImgUrl" alt="精品歌单" v-if="detail.coverImgUrl"/>
       <div class="siger">
         <el-button round style="margin-top:0px">精品歌单</el-button>
         <p style="font-size:18px">{{ detail.name }}</p>
@@ -215,8 +215,8 @@ export default {
 }
 .container {
   position: relative;
-  width: 1200px;
-  margin: 10px auto;
+  width: 1100px;
+  margin: 20px auto;
   .hotlist {
     background-color: rgba($color: #55494f, $alpha: 0.999);
     display: flex;

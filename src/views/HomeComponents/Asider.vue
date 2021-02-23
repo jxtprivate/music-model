@@ -65,15 +65,15 @@ export default {
   //   text-align: center;
   .music {
     margin-top: 15px;
-    margin-left: 20px;
+    margin-left: 10px;
     float: left;
     box-sizing: border-box;
     li {
       box-sizing: border-box;
       height: 40px;
-      width: 200px;
+      width: 160px;
       //   background-color: red;
-      font-size: 18px;
+      font-size: 16px;
       margin: 4px;
       padding: 8px 10px;
       border-radius: 5px;

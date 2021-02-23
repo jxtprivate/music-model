@@ -31,12 +31,12 @@ export default {
     };
   },
   created() {
-    this.getPlayCommends({ id: this.$route.params.id, limit: 100 });
+    this.getAlbumCommends({ id: this.$route.params.id, limit: 100 });
   },
 
   methods: {
-    async getPlayCommends(param) {
-      const res = await this.$api.getPlayCommends(param);
+    async getAlbumCommends(param) {
+      const res = await this.$api.getAlbumCommends(param);
       console.log(res);
       this.total = res.data.total;
       this.hotCommends = res.data.hotComments;
