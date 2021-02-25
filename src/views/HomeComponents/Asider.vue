@@ -44,6 +44,9 @@ export default {
       selected: 0,
     };
   },
+  created(){
+    
+  },
   methods: {
     addClass(index) {
       // console.log(index);

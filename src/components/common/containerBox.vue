@@ -1,10 +1,10 @@
 <template lang="">
   <div class="info">
-    <el-link :underline="false" style="color:#333333"  :href="url+id">
+    <el-link :underline="false" style="color:#333333"  :href="id?url+id:url">
       <div class="box">
         <img :src="src" alt="" />
       </div>
-      <h4>{{ title }}</h4>
+      <h4 v-if="title">{{ title }}</h4>
       <div class="slot"><slot name="top-right"></slot></div
     ></el-link>
   </div>

@@ -20,7 +20,7 @@ export default {
     methods:{
         async getSingerMv(param){
             const res = await this.$api.getSingerMv(param);
-            console.log(res);
+            // console.log(res);
             this.mvs = res.data.mvs;
         }
     },

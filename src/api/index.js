@@ -108,7 +108,7 @@ const api = {
             params:param
         })
     },
-    //获取歌单评论
+    //获取专辑评论
     getAlbumCommends(param){
         return axios.get('/comment/album',{
             params:param
@@ -117,6 +117,46 @@ const api = {
     //获取歌手描述
     getSingerDescribes(param){
         return axios.get('/artist/desc',{
+            params:param
+        })
+    },
+    //获取mvurl地址
+    getMvUrl(param){
+        return axios.get('/mv/url',{
+            params:param
+        })
+    },
+    //获取mv信息
+    getMvDetail(param){
+        return axios.get('/mv/detail',{
+            params:param
+        })
+    },
+    //获取mv评论
+    getMvComments(param){
+        return axios.get('/comment/mv',{
+            params:param
+        })
+    },
+    //获取歌单评论
+    getPlayCommends(param){
+        return axios.get('/comment/playlist',{
+            params:param
+        })
+    },
+    //获取所有榜单
+    getAllRanklist(){
+        return axios.get('/toplist')
+    },
+    //获取歌手排行榜
+    getSingerRank(param){
+        return axios.get('/toplist/artist',{
+            params:param
+        })
+    },
+    //获取相似歌手
+    getSimpleSinger(param){
+        return axios.get('/simi/artist',{
             params:param
         })
     },

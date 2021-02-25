@@ -72,7 +72,13 @@ export default {
   created() {
     this.getSingerDetail({ id: this.id });
   },
+  watch:{
+    '$route':'updata'
+  },
   methods: {
+    updata(){
+      this.getSingerDetail({ id: this.id });
+    },
     async getSingerDetail(param) {
       const res = await this.$api.getSingerDetail(param);
       // console.log(res.data.data.artist);

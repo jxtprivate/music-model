@@ -96,7 +96,7 @@ export default {
   transition: all linear 0.2s;
 }
 .container {
-  width: 1380px;
+  width: 1280px;
   // background-color: red;
   .tag {
     position: relative;

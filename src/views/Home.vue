@@ -158,6 +158,7 @@ export default {
   created() {
     // this.init();
     this.getUserInfo();
+   
   },
 
   methods: {

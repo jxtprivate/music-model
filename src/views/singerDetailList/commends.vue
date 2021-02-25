@@ -37,7 +37,7 @@ export default {
   methods: {
     async getAlbumCommends(param) {
       const res = await this.$api.getAlbumCommends(param);
-      console.log(res);
+      // console.log(res);
       this.total = res.data.total;
       this.hotCommends = res.data.hotComments;
       this.commends = res.data.comments;

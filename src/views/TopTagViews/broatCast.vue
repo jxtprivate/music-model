@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-        444
+        该功能尚未开放！
     </div>
 </template>
 <script>

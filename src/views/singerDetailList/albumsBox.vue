@@ -52,7 +52,7 @@ export default {
     position: absolute;
     width: 150px;
     height: 150px;
-    background-color: pink;
+    background-color: white;
     z-index: 999;
     img {
       width: 100%;

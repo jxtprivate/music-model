@@ -25,13 +25,32 @@ export default {
 
     };
   },
+ created(){
+  this.getPath()
+ },
+ watch:{
+   '$route':'getPath'
+ },
   methods: {
+    getPath(){
+      console.log(this.$route.path);
+      this.list.forEach((item,index)=>{
+        // console.log(item,index);
+        if(item.pick == this.$route.path){
+          console.log(index);
+          this.selected = index;
+        }
+      })
+    },
     addClass(index) {
       // console.log(index);
       this.selected = index;
+     
+      
     },
   },
-  props:['list','size','hrefhead']
+  props:['list','size','hrefhead'],
+  
 };
 </script>
 <style lang="scss" scoped>

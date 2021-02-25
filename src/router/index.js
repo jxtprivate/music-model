@@ -30,6 +30,8 @@ import albumsDetail from '../views/singerDetailList/albumsDetail';
 import sl from '../views/singerDetailList/songsList';
 import ds from '../views/singerDetailList/describes';
 import cm from '../views/singerDetailList/commends';
+import mvDetail from '../views/singerDetailList/mvDetail'
+import singerRank from '../singerRank'
 
 Vue.use(VueRouter);
 
@@ -45,6 +47,14 @@ const routes = [
     {
       path:'useredit',
       component:userEdit
+    },
+    {
+      path:'mvdetail/:id',
+      component:mvDetail
+    },
+    {
+      path:'singerrank',
+      component:singerRank
     },
     {
       path:'albumsdetail/:id',

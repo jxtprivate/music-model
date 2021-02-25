@@ -1,6 +1,10 @@
 <template lang="">
   <div>
-    <el-link :underline="false" style="color:#333333" :href="'#/home/playlistdetail/'+ item.id">
+    <el-link
+      :underline="false"
+      style="color:#333333"
+      :href="'#/home/playlistdetail/' + item.id"
+    >
       <div class="box">
         <img :src="item.coverImgUrl" alt="" />
         <div class="info">
@@ -13,7 +17,18 @@
             {{ item.copywriter }}
           </p>
         </div>
-        <div style="position:absolute;top:3px;right:295px;color:#fff;font-size:12px"><span class="el-icon-video-play" v-if="item.playCount" style="margin-right:5px"></span>{{ item.playCount?(item.playCount/10000).toFixed(2) + '万':''}}</div>
+        <div
+          style="position:absolute;top:12px;right:290px;color:#fff;font-size:10px"
+        >
+          <span
+            class="el-icon-video-play"
+            v-if="item.playCount"
+            style="margin-right:5px"
+          ></span
+          >{{
+            item.playCount ? (item.playCount / 10000).toFixed(2) + "万" : ""
+          }}
+        </div>
       </div>
     </el-link>
   </div>
@@ -25,15 +40,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .box {
-    position: relative;
+  position: relative;
   display: flex;
-  width: 450px;
+  // width: 400px;
   height: 160px;
   // background-color: pink;
   margin-bottom: 20px;
   img {
-    width: 160px;
-    height: 160px;
+    // margin: 10px 0;
+    width: 140px;
+    height: 140px;
     // background-color: red;
     border-radius: 8px;
     overflow: hidden;
@@ -44,6 +60,10 @@ export default {
     p:nth-child(1) {
       margin-bottom: 15px;
       margin-left: 10px;
+      width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     p:nth-child(2) {
       margin-bottom: 20px;
@@ -53,7 +73,7 @@ export default {
       font-weight: 300;
     }
     p:nth-child(3) {
-      width: 280px;
+      width: 260px;
       height: 20px;
       font-size: 12px;
       color: #ccc;
@@ -64,6 +84,5 @@ export default {
       line-height: 20px;
     }
   }
-  
 }
 </style>
