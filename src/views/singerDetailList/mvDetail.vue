@@ -51,7 +51,7 @@ export default {
   },
   created() {
     this.getMvUrl({ id: this.$route.params.id, r: 1080 });
-    this.getMvDetail({ mvid: this.$route.params.id });
+    this.getMvDetail({ id: this.$route.params.id });
     this.getMvComments({ id: this.$route.params.id, limit: 100 });
   },
   mounted() {},

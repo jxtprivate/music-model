@@ -9,7 +9,10 @@
           <Asider></Asider>
         </el-aside>
         <el-main>
-          <router-view />
+          <transition name="upslide">
+           <router-view />
+          </transition>
+         
         </el-main>
       </el-container>
       <el-footer height="60px">
@@ -19,10 +22,13 @@
           loop
           ref="audio"
           autoplay
+          id="ad"
         ></audio>
         <div class="footer">
           <div>
-            <div class="img"><img :src="picUrl" alt="" /></div>
+            <div class="img">
+              <el-link :underline="false" :href="'#/home/lyric/'+id" style="width: 100%;height: 100%;"><img :src="picUrl" alt="" style="width: 100%;height: 100%;"/></el-link>
+              </div>
             <div class="info">
               <p style="font-size:14px;margin-top:10px">{{ title }}</p>
               <p style="font-size:12px;height:20px;line-height:20px">
@@ -99,11 +105,12 @@
 import Header from "./HomeComponents/Header";
 import Asider from "./HomeComponents/Asider";
 import { mapMutations, mapState } from "vuex";
+let timer = null;
 export default {
   data() {
     return {
       value: 0,
-      voice: 1,
+      voice: 0.2,
       userInfo: {},
       time: 0,
       s: false,
@@ -131,34 +138,40 @@ export default {
     //   // }
     // },
     curId() {
-      // console.log(this.curId);
+      console.log(this.curId);
+      if (timer != null) clearInterval(timer);
       this.value = 0;
-      console.log(123);
+      // console.log(123);
+     
       this.s = false;
       this.play();
-      this.songList.some((item) => {
-        if (parseInt(item.id) === parseInt(this.curId)) {
-          this.singer = "";
-          this.id = this.curId;
-          this.title = item.name;
-          item.ar.forEach((ele) => {
-            this.singer = this.singer + ele.name + " ";
-          });
-          this.picUrl = item.al.picUrl;
-          return true;
-        }
-        return false;
-      });
-      setTimeout(() => {
+      if (this.songList != null) {
+        this.songList.some((item) => {
+          if (parseInt(item.id) === parseInt(this.curId)) {
+            this.singer = "";
+            this.id = this.curId;
+            this.title = item.name;
+            item.ar.forEach((ele) => {
+              this.singer = this.singer + ele.name + " ";
+            });
+            this.picUrl = item.al.picUrl;
+            return true;
+          }
+          return false;
+        });
+      }
+
+      timer = setInterval(() => {
         if (this.$refs.audio.duration)
           this.max = parseInt(this.$refs.audio.duration);
-      }, 5000);
+        // console.log(this.$refs.audio.currentTime);
+        this.value = this.$refs.audio.currentTime;
+      }, 1000);
     },
   },
   created() {
     // this.init();
     this.getUserInfo();
-   
   },
 
   methods: {
@@ -236,6 +249,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .home {
   @font-face {
     font-family: "iconfont"; /* project id 2371936 */
@@ -265,6 +279,9 @@ export default {
     color: #333;
     // text-align: center;
     line-height: 28px;
+    .el-link{
+      display: block!important;
+    }
   }
 
   .el-aside {
@@ -326,5 +343,29 @@ export default {
       }
     }
   }
+}
+.upslide-enter {
+  opacity: 0;
+  transform: translateY(-100%);
+  // position: absolute;
+  
+}
+.v-enter-to{
+  opacity: 1;
+  transform: translateY(0%);
+}
+// .v-leave{
+//   opacity: 1;
+//   transform: translateX(100px);
+// }
+// .upslide-leave-to {
+//   opacity: 0;
+//   transform: translateY(100%);
+//   position: absolute;
+  
+// }
+.upslide-enter-active{
+  // position: absolute;
+  transition: all .5s ease;
 }
 </style>

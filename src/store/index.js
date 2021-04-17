@@ -8,9 +8,14 @@ export default new Vuex.Store({
     userDetail:{},
     playLists:{},
     songList:[],
+    hotSeachList:[],
     // songs:[],
     curId:0,
-    albums:{}
+    albums:{},
+    keywords:'',
+    flag:false,
+    flag1:false,
+    result:{},
   
   },
   mutations: {
@@ -27,14 +32,35 @@ export default new Vuex.Store({
       state.songList = res
     },
     setSongs(state,res){
-      state.songs = res
+      state.songs = res 
     },
     setCurrentId(state,id){
       state.curId = id;
     },
     setAlbumsInformation(state,res){
       state.albums = res
-    }
+    },
+    setFlagT(state){
+      state.flag = true
+    },
+    setFlagF(state){
+      state.flag = false
+    },
+    setFlag1T(state){
+      state.flag1 = true
+    },
+    setFlag1F(state){
+      state.flag1 = false
+    },
+    setHotList(state,res){
+      state.hotSeachList = res;
+    },
+    setKeywords(state,res){
+      state.keywords = res;
+    },
+    setResult(state,res){
+      state.result = res;
+    },
 
 
     

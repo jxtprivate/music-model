@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="container">
+  <div class="container" @keyup.13="submitForm">
     <div class="img"></div>
     <el-form
       :model="ruleForm"
@@ -16,11 +16,12 @@
           type="password"
           v-model="ruleForm.password"
           autocomplete="off"
+          
         ></el-input>
       </el-form-item>
 
       <el-form-item>
-        <el-button
+        <el-button 
           type="danger"
           size="medium"
           @click="submitForm"
@@ -44,10 +45,8 @@ export default {
   methods: {
     submitForm() {
       // console.log(this.ruleForm);
-      this.$emit('getUserInfo',this.ruleForm);
-      
+      this.$emit("getUserInfo", this.ruleForm);
     },
-     
   },
 };
 </script>
@@ -57,11 +56,12 @@ export default {
   width: 500px;
   margin: 200px auto;
   // border: 1px solid #ccc;
+  // color: red!important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   padding: 30px;
   padding-top: 80px;
   padding-right: 100px;
-  background-color: #c0c4cc;
+  background-color: rgb(35, 40, 52,.4);
   .img {
     position: absolute;
     top: 15px;
@@ -72,4 +72,5 @@ export default {
     // border: 1px solid red;
   }
 }
+
 </style>

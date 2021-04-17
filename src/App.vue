@@ -71,6 +71,14 @@ li {
   margin: 0px 10px !important;
   margin-bottom: 20px !important;
 }
-
-
+.el-form-item__label{
+  color:#e8eaec!important;
+}
+.el-slider__button-wrapper{
+  top:-16px!important;
+}
+.el-slider__button{
+  width: 10px!important;
+  height: 10px!important;
+}
 </style>

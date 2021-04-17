@@ -98,6 +98,10 @@ export default {
     id() {
       this.init();
     },
+    $route() {
+      this.init();
+      this.getPlayListDetail();
+    },
   },
   methods: {
     getIDs() {},
@@ -194,6 +198,8 @@ export default {
       width: 205px;
       height: 205px;
       //   background-color: pink;
+      background: url("../assets/rankbg.png") no-repeat;
+      background-size: cover;
       overflow: hidden;
       border-radius: 5px;
       img {

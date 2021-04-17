@@ -78,6 +78,13 @@ export default {
       
     },
   },
+   watch: {
+    
+    $route() {
+     
+      this.getSingerAlbumsDetail({ id: this.$route.params.id });
+    },
+  },
   created() {
     this.getSingerAlbumsDetail({ id: this.$route.params.id });
   },

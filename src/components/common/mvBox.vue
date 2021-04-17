@@ -9,7 +9,7 @@
             }}</span
           >
           <span>{{ timelength }}</span>
-          <img :src="item.imgurl" alt="" />
+          <el-image :src="item.imgurl" alt="" class="img" lazy/>
         </div>
         <p
           style="margin-top: 5px;padding: 1px 3px;overflow: hidden!important;text-overflow: ellipsis!important;white-space:nowrap!important;color: #666;font-size: 15px;width:230px"
@@ -59,10 +59,11 @@ export default {
       // background-color: pink;
       overflow: hidden;
       border-radius: 5px;
-      img {
+      .img {
         width: 100%;
         max-width: 100%;
         height: auto;
+        // background-color: red!important;
       }
       span:nth-child(1) {
         width: 100%;

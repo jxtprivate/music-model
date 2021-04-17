@@ -42,7 +42,7 @@ export default {
 
     p {
       font-size: 14px;
-      text-indent: 2em;
+      // text-indent: 2em;
       color: #888;
       margin-top: 10px;
       line-height: 25px;

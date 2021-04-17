@@ -2,7 +2,7 @@
   <div>
     <div class="box">
       <el-link :underline="false" :href="'#/home/singerdetail/'+ item.id">
-        <img :src="item.img1v1Url" alt="" />
+        <el-image :src="item.img1v1Url" alt="" class="img" lazy/>
         <div class="icon">
           <p>
             {{ item.name }}
@@ -25,7 +25,7 @@ export default {
   // background-color: pink;
 
   overflow: hidden;
-  img {
+  .img {
     width: 170px;
     height: 170px;
     // background-color: red;

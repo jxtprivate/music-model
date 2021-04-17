@@ -6,7 +6,7 @@
       :href="'#/home/playlistdetail/' + item.id"
     >
       <div class="box">
-        <img :src="item.coverImgUrl" alt="" />
+        <el-image :src="item.coverImgUrl" alt="" class="img" lazy/>
         <div class="info">
           <p>{{ item.name }}</p>
           <p>{{ "by " + item.creator.nickname }}</p>
@@ -18,7 +18,7 @@
           </p>
         </div>
         <div
-          style="position:absolute;top:12px;right:290px;color:#fff;font-size:10px"
+          style="position:absolute;top:1px;right:274px;color:#fff;font-size:5px"
         >
           <span
             class="el-icon-video-play"
@@ -46,7 +46,7 @@ export default {
   height: 160px;
   // background-color: pink;
   margin-bottom: 20px;
-  img {
+  .img {
     // margin: 10px 0;
     width: 140px;
     height: 140px;

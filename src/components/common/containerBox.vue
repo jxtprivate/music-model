@@ -2,7 +2,7 @@
   <div class="info">
     <el-link :underline="false" style="color:#333333"  :href="id?url+id:url">
       <div class="box">
-        <img :src="src" alt="" />
+        <el-image :src="src" alt="" lazy class="img"/>
       </div>
       <h4 v-if="title">{{ title }}</h4>
       <div class="slot"><slot name="top-right"></slot></div
@@ -27,14 +27,18 @@ margin-bottom: 10px;
   position: relative;
   width: 205px;
   .box {
-    width: 100%;
+    width: 205px;
     height: 205px;
     border-radius: 10px;
-    background-color: rgba($color: #38667d, $alpha: 1);
+    // background-color: rgba($color: black, $alpha: 1);
+    
+    // border: 5px solid black;
+    // background-size: cover;
     overflow: hidden;
-    img {
+    .img {
       width: 100%;
       height: 100%;
+      background: url("../../assets/rankbg.png") no-repeat;
     }
   }
   h4 {

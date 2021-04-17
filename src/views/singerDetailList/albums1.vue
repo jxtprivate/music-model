@@ -29,10 +29,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container{
-    width: 1200px;
+    width: 1300px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
     
 }
     

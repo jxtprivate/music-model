@@ -32,13 +32,14 @@ import ds from '../views/singerDetailList/describes';
 import cm from '../views/singerDetailList/commends';
 import mvDetail from '../views/singerDetailList/mvDetail'
 import singerRank from '../singerRank'
+import lyric from '../views/lyric'
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path:'/',redirect:'/home/findmusic/recommend'},
+  { path:'/',redirect:'/login'},
   { path:'/login',component:Login},
-  { path:'/home', component:Home, children:[
+  { path:'/home', redirect:'/home/findmusic/recommend',component:Home, children:[
     {
       path:'userinfo/:id',
       component:userInfo,
@@ -47,6 +48,10 @@ const routes = [
     {
       path:'useredit',
       component:userEdit
+    },
+    {
+      path:'lyric/:id',
+      component:lyric
     },
     {
       path:'mvdetail/:id',

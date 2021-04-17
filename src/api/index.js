@@ -42,6 +42,7 @@ const api = {
     getSongUrls(ids){
         return axios.get("song/url?id=" + ids)
     },
+   
     //获取所有的歌单收藏者
     getSubscribes(param){
         return axios.get("/playlist/subscribers",{
@@ -125,10 +126,10 @@ const api = {
         return axios.get('/mv/url',{
             params:param
         })
-    },
+    }, 
     //获取mv信息
     getMvDetail(param){
-        return axios.get('/mv/detail',{
+        return axios.get('/mv/url',{
             params:param
         })
     },
@@ -157,6 +158,28 @@ const api = {
     //获取相似歌手
     getSimpleSinger(param){
         return axios.get('/simi/artist',{
+            params:param
+        })
+    },
+    //获取热搜列表
+    getHotSearchList(){
+        return axios.get('/search/hot/detail')
+    },
+    //获取关键词搜索列表
+    getKeywordSearch(param){
+        return axios.get('/search/suggest',{
+            params:param
+        })
+    },
+    //获取歌词api/lyric
+    getLyric(param){
+        return axios.get('/lyric',{
+            params:param
+        })
+    },
+    //获取歌曲评论
+    getSongComment(param){
+        return axios.get('/comment/music',{
             params:param
         })
     },

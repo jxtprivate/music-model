@@ -5,7 +5,7 @@
         精品歌单<span class="el-icon-arrow-right"></span>
       </h3>
       <el-button plain round size="mini" @click.stop="tag"
-        ><span class="el-icon-place"></span> 全部歌单</el-button
+        ><span class="el-icon-place" ref="lipse">全部歌单</span> </el-button
       >
       <transition>
         <div class="box" v-if="flag" id="sellineName">
@@ -66,6 +66,8 @@ export default {
       let param = { limit: 1000, cat: name };
       this.getjingpinplay(param);
       this.flag = false;
+      console.log(name);
+      this.$refs.lipse.innerHTML = name;
     },
     tag() {
       this.flag = !this.flag;
@@ -100,7 +102,7 @@ export default {
   // background-color: red;
   .tag {
     position: relative;
-    width: 1380px;
+    width: 1260px;
     height: 30px;
     h3 {
       float: left;

@@ -1,64 +1,105 @@
 <template lang="">
   <div class="search">
-    <el-autocomplete
+    <el-input
       v-model="state"
-      :fetch-suggestions="querySearchAsync"
       placeholder="请输入内容"
-      @select="handleSelect"
       size="mini"
       prefix-icon="el-icon-search"
       @input="input"
-    ></el-autocomplete>
+      @focus="focus"
+      @blur="blur"
+    ></el-input>
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        restaurants: [],
-        state: '',
-        timeout:  null
-      };
-    },
-    methods: {
-        input(){
-            console.log(this.state);
-        },
-      loadAll() {
-        return [
-          { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
-          { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
-          { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
-          { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
-         
-        ];
-      },
-      querySearchAsync(queryString, cb) {
-        var restaurants = this.restaurants;
-        var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
-
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-          cb(results);
-        }, 200);
-      },
-      createStateFilter(queryString) {
-        return (state) => {
-          return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-        };
-      },
-      handleSelect(item) {
-        console.log(item);
+import { mapMutations } from "vuex";
+let timer1 = null;//防抖操作
+export default {
+  data() {
+    return {
+      restaurants: [],
+      state: "",
+      timeout: null,
+    };
+  },
+  methods: {
+    input() {
+      if(timer1 != null) clearTimeout(timer1);//防抖/节流
+      
+      timer1 = setTimeout(() => {
+        console.log(this.state);
+        this.setKeywords(this.state);
+        this.getKeywordSearch(this.state);
+      }, 1000);
+      if (this.state === "") {
+        this.setFlag1F();
+        this.setFlagT();
+      } else {
+        this.setFlagF();
+        this.setFlag1T();
       }
     },
-    mounted() {
-      this.restaurants = this.loadAll();
+    blur(){
+      this.setFlagF();
+      this.setFlag1F();
+    },
+    focus(){
+      if(this.state === ''){
+        this.restriveHotList()
+      }
+      else{
+        // console.log(this.state);//待修改------------------------------------
+        this.setFlag1T();
+      }
+    },
+    ...mapMutations([
+      "setFlagT",
+      "setFlagF",
+      "setHotList",
+      "setFlag1T",
+      "setFlag1F",
+      "setKeywords",
+      "setResult",
+      "setSongsList"
+    ]),
+
+    async restriveHotList() {
+      
+      this.setFlagT();
+      const res = await this.$api.getHotSearchList();
+      // console.log(res.data.data);
+      this.setHotList(res.data.data);
+    },
+    async getKeywordSearch(param){
+      const res = await this.$api.getKeywordSearch({keywords:param});
+      console.log(res.data.result);
+      let ids = '';
+      res.data.result.songs.forEach((item)=>{
+        if(ids == ''){
+          ids=item.id;
+        }
+        else{
+          ids+=','+item.id
+        }
+        
+      })
+      // console.log(ids);
+      const res1 = await this.$api.getAllSongs(ids);
+      console.log(res1);
+      this.setResult(res.data.result);
+      this.setSongsList(res1.data.songs);
     }
-  };
+
+  },
+  created(){
+    this.setKeywords(this.state);
+  },
+  mounted() {},
+};
 </script>
 <style lang="scss" scoped>
-.search{
-    margin-left: 10px;
-    margin-bottom: 15px;
+.search {
+  margin-left: 10px;
+  margin-bottom: 15px;
 }
 </style>

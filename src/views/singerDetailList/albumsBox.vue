@@ -3,7 +3,7 @@
     <el-link :underline="false" :href="'#/home/albumsdetail/'+ item.id">
       <div class="content">
         <div class="firstBox">
-          <img :src="item.picUrl" alt="" />
+          <el-image :src="item.picUrl" alt="" class="img" lazy/>
         </div>
         <div class="xiao"></div>
         <div class="bottomBox"></div>
@@ -54,9 +54,11 @@ export default {
     height: 150px;
     background-color: white;
     z-index: 999;
-    img {
+    .img {
       width: 100%;
       height: 100%;
+      
+      
     }
     box-shadow: 1px 0px 4px 0px #383434;
   }

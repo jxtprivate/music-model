@@ -58,7 +58,7 @@ export default {
     padding-left: 5px;
     box-sizing: border-box;
     background-color: #fff;
-    color: #f7b3b3;
+    color: #94d7fd;
     // text-align: center;
     line-height: 35px;
     z-index: 2;

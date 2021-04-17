@@ -1,6 +1,9 @@
 <template lang="">
-  <div>
-    <login-detail @getUserInfo="getUserInfo"></login-detail>
+  <div class="box" >
+    <div class="box1">
+      <login-detail @getUserInfo="getUserInfo"></login-detail>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -20,7 +23,7 @@ export default {
           duration: 1000,
           offset: 200,
         });
-
+      
         // console.log(res.data.account.id);
         localStorage.setItem("id", res.data.account.id);
 
@@ -37,10 +40,21 @@ export default {
       //   console.log(res.data.code);
       // console.log(data);
     },
+   
   },
   components: {
     loginDetail,
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.box{
+  background:url("../assets/bgp.png") no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  height: 721px;
+  // margin-top: 0px!important;
+  // padding-top: 0px!important;
+
+}
+</style>

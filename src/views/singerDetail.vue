@@ -99,7 +99,9 @@ export default {
     .img {
       width: 210px;
       height: 200px;
-      background-color: pink;
+      // background-color: pink;
+      background: url("../assets/rankbg.png") no-repeat;
+      background-size: cover;
       border-radius: 10px;
       overflow: hidden;
       img {
