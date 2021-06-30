@@ -36,7 +36,7 @@ export default {
           pick:'/home/findmusic/singerlist'
         },
         {
-          name: "主播电台",
+          name: "最新音乐",
           url: "broatcast",
           pick:'#/home/findmusic/broatcast'
         },

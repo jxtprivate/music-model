@@ -8,7 +8,7 @@ import api from './api/index';
 import './assets/fonts/iconfont.css'
 Vue.prototype.$api = api;
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false;//阻止启动生产消息
 
 Vue.use(ElementUI);
 
